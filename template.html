@@ -1,17 +1,30 @@
 <!doctype html>
 <html>
-  <head>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <div class="jumbotron">
-        <form>
-          <div class="form-group">
-            <label for="RSS feed">RSS feed</label>
-            <textarea class="form-control" id="RSS feed" rows="1"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Add</button>
-        </form>
-    </div>
-  </body>
+   <head>
+      <title><%= htmlWebpackPlugin.options.title %></title>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-7">
+               <div class="jumbotron">
+                  <form>
+                     <div class="form-group">
+                        <label for="RSS feed">RSS feed</label>
+                        <textarea class="form-control" id="RSS feed" rows="1"></textarea>
+                     </div>
+                     <button type="submit" id="Add feed" class="btn btn-primary">Add</button>
+                  </form>
+               </div>
+            </div>
+            <div class="col-4" id="Feeds list">
+               <p>Список RSS потоков:</p>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12" id="Posts list">
+               <p>Публикации:</p>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>
