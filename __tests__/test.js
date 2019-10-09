@@ -17,6 +17,9 @@ test('feed are added', () => {
     .end()
     .then((childrenLlength) => {
       expect(childrenLlength).toBe(2);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 
