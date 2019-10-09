@@ -2,7 +2,7 @@ import Nightmare from 'nightmare';
 
 let nightmare = null;
 beforeEach(() => {
-  nightmare = new Nightmare({ show: true });
+  nightmare = new Nightmare({ show: false });
 });
 
 test('feed are added', () => {
@@ -21,7 +21,7 @@ test('feed are added', () => {
 });
 
 test('posts are added', () => {
-  jest.setTimeout(20000);
+  jest.setTimeout(100000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -36,7 +36,7 @@ test('posts are added', () => {
 });
 
 test('description are added', () => {
-  jest.setTimeout(20000);
+  jest.setTimeout(100000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -51,7 +51,7 @@ test('description are added', () => {
 });
 
 test('invalid address alert', () => {
-  jest.setTimeout(10000);
+  jest.setTimeout(100000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -66,7 +66,7 @@ test('invalid address alert', () => {
 });
 
 test('not RSS alert', () => {
-  jest.setTimeout(10000);
+  jest.setTimeout(100000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
