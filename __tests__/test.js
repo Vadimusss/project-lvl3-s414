@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 test('feed are added', () => {
-  jest.setTimeout(200000);
+  jest.setTimeout(20000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -21,7 +21,7 @@ test('feed are added', () => {
 });
 
 test('posts are added', () => {
-  jest.setTimeout(200000);
+  jest.setTimeout(20000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -36,9 +36,10 @@ test('posts are added', () => {
 });
 
 test('description are added', () => {
-  jest.setTimeout(200000);
+  jest.setTimeout(20000);
 
   return nightmare
+    .evaluate(console.log('Start!!!!!!'))
     .goto('http://acoustic-cry.surge.sh')
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
@@ -51,7 +52,7 @@ test('description are added', () => {
 });
 
 test('invalid address alert', () => {
-  jest.setTimeout(200000);
+  jest.setTimeout(20000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -66,7 +67,7 @@ test('invalid address alert', () => {
 });
 
 test('not RSS alert', () => {
-  jest.setTimeout(200000);
+  jest.setTimeout(20000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
