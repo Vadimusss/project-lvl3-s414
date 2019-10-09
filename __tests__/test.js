@@ -39,10 +39,10 @@ test('description are added', () => {
   jest.setTimeout(20000);
 
   return nightmare
-    .evaluate(console.log(document))
     .goto('http://acoustic-cry.surge.sh')
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
+    .evaluate(console.log(document))
     .wait(2000)
     .evaluate(() => document.querySelector('.btn-outline-info').textContent)
     .end()
