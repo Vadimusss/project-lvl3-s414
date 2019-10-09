@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 test('feed are added', () => {
-  jest.setTimeout(20000);
+  jest.setTimeout(200000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -17,14 +17,11 @@ test('feed are added', () => {
     .end()
     .then((childrenLlength) => {
       expect(childrenLlength).toBe(2);
-    })
-    .catch((error) => {
-      console.log(error);
     });
 });
 
 test('posts are added', () => {
-  jest.setTimeout(100000);
+  jest.setTimeout(200000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -39,7 +36,7 @@ test('posts are added', () => {
 });
 
 test('description are added', () => {
-  jest.setTimeout(100000);
+  jest.setTimeout(200000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -54,7 +51,7 @@ test('description are added', () => {
 });
 
 test('invalid address alert', () => {
-  jest.setTimeout(100000);
+  jest.setTimeout(200000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
@@ -69,7 +66,7 @@ test('invalid address alert', () => {
 });
 
 test('not RSS alert', () => {
-  jest.setTimeout(100000);
+  jest.setTimeout(200000);
 
   return nightmare
     .goto('http://acoustic-cry.surge.sh')
