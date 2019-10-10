@@ -15,7 +15,10 @@ test('feed are added', async () => {
     .click('#Add\\ feed')
     .wait(2000)
     .end()
-    .evaluate(() => document.querySelector('#Feeds\\ list').children.length);
+    .evaluate(() => {
+      console.log(document.querySelector('#Feeds\\ list').children.length);
+      return document.querySelector('#Feeds\\ list').children.length;
+    });
 
   console.log(childrenLlength);
   expect(childrenLlength).toBe(2);
