@@ -14,6 +14,7 @@ test('feed are added', async () => {
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
     .wait(2000)
+    .end()
     .evaluate(() => document.querySelector('#Feeds\\ list').children.length);
 
   console.log(childrenLlength);
