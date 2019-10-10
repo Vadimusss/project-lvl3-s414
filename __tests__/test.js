@@ -1,23 +1,23 @@
+import '@babel/polyfill';
 import Nightmare from 'nightmare';
 
 let nightmare = null;
 beforeEach(() => {
-  nightmare = new Nightmare({ show: false });
+  nightmare = new Nightmare({ show: true });
 });
 
-test('feed are added', () => {
+test('feed are added', async () => {
   jest.setTimeout(20000);
 
-  return nightmare
+  const childrenLlength = await nightmare
     .goto('http://acoustic-cry.surge.sh')
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
     .wait(2000)
     .evaluate(() => document.querySelector('#Feeds\\ list').children.length)
-    .end()
-    .then((childrenLlength) => {
-      expect(childrenLlength).toBe(2);
-    });
+    .end();
+
+  expect(childrenLlength).toBe(2);
 });
 
 test('posts are added', () => {
@@ -42,7 +42,6 @@ test('description are added', () => {
     .goto('http://acoustic-cry.surge.sh')
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
-    .evaluate(console.log(document))
     .wait(2000)
     .evaluate(() => document.querySelector('.btn-outline-info').textContent)
     .end()
