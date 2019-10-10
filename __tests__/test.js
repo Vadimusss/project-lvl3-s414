@@ -40,7 +40,8 @@ test('posts are added', () => {
     .end()
     .then((childrenLlength) => {
       expect(childrenLlength).toBeGreaterThan(1);
-    });
+    })
+    .catch(() => console.log('error!'));
 });
 
 test('description are added', () => {
