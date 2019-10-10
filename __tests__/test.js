@@ -3,7 +3,7 @@ import Nightmare from 'nightmare';
 
 let nightmare = null;
 beforeEach(() => {
-  nightmare = new Nightmare({ show: true });
+  nightmare = new Nightmare({ show: false });
 });
 
 test('feed are added', async () => {
@@ -14,8 +14,8 @@ test('feed are added', async () => {
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
     .click('#Add\\ feed')
     .wait(2000)
-    .evaluate(() => document.querySelector('#Feeds\\ list').children.length)
-    .end();
+    .evaluate(() => document.querySelector('#Feeds\\ list').children.length);
+
   console.log(childrenLlength);
   expect(childrenLlength).toBe(2);
 });
