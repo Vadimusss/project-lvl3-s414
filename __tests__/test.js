@@ -11,20 +11,12 @@ test('feed are added', async () => {
 
   const childrenLlength = await nightmare
     .goto('http://acoustic-cry.surge.sh')
-    .evaluate(() => console.log(document))
     .type('#RSS\\ feed', 'www.nasa.gov/rss/dyn/onthestation_rss.rss')
-    .evaluate(() => console.log('2'))
     .click('#Add\\ feed')
-    .evaluate(() => console.log(document))
     .wait(2000)
-    .evaluate(() => console.log('4'))
     .end()
-    .evaluate(() => {
-      console.log(document.querySelector('#Feeds\\ list').children.length);
-      return document.querySelector('#Feeds\\ list').children.length;
-    });
+    .evaluate(() => document.querySelector('#Feeds\\ list').children.length);
 
-  console.log(childrenLlength);
   expect(childrenLlength).toBe(2);
 });
 
@@ -40,8 +32,7 @@ test('posts are added', () => {
     .end()
     .then((childrenLlength) => {
       expect(childrenLlength).toBeGreaterThan(1);
-    })
-    .catch(() => console.log('error!'));
+    });
 });
 
 test('description are added', () => {
