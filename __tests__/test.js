@@ -16,7 +16,7 @@ test('feed are added', async () => {
     .wait(2000)
     .evaluate(() => document.querySelector('#Feeds\\ list').children.length)
     .end();
-
+  console.log(childrenLlength);
   expect(childrenLlength).toBe(2);
 });
 
