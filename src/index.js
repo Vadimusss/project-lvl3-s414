@@ -1,4 +1,4 @@
-import init from './init';
+import application from './application';
 import '../scss/custom.scss';
 
-init();
+application();
