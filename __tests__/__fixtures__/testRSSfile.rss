@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?> <rss version="2.0" xml:base="http://www.nasa.gov/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/"> <channel> <title>NASA Breaking News</title>
+ <description>A RSS news feed containing the latest NASA news articles and press releases.</description>
+ <link>http://www.nasa.gov/</link>
+ <atom:link rel="self" href="http://www.nasa.gov/rss/dyn/breaking_news.rss" />
+ <language>en-us</language>
+ <managingEditor>jim.wilson@nasa.gov</managingEditor>
+ <webMaster>brian.dunbar@nasa.gov</webMaster>
+ <docs>http://blogs.harvard.edu/tech/rss</docs>
+ <item> <title>NASA Spacecraft Launches on Mission to Explore Frontier of Space</title>
+ <link>http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space</link>
+ <description>After successfully launching Thursday night, NASA’s Ionospheric Connection Explorer (ICON) spacecraft is in orbit for a first-of-its-kind mission to study a region of space where changes can disrupt communications and satellite orbits, and even increase radiation risks to astronauts.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/icon-plane.jpg?itok=nD7N5cBL" length="383140" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space</guid>
+ <pubDate>Thu, 10 Oct 2019 22:29 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>453287</dc:identifier>
+</item>
+ <item> <title>NASA Highlights Science on Next Northrop Grumman Mission to Space Station</title>
+ <link>http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0</link>
+ <description>NASA will host a media teleconference at 2 p.m. EDT Thursday, Oct. 17, to discuss select science investigations and technology demonstrations launching on Northrop Grumman’s 12th commercial resupply mission for the agency to the International Space Station.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/iss060e073348.jpeg?itok=YDxTKcKM" length="2577181" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0</guid>
+ <pubDate>Thu, 10 Oct 2019 13:06 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>453231</dc:identifier>
+</item>
+ <item> <title>NASA Invites Media to Events Highlighting Spacesuits for Moon to Mars</title>
+ <link>http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars</link>
+ <description>Media are invited to NASA Headquarters in Washington Tuesday, Oct. 15 to get an up-close look at the next generation spacesuits the first woman and next man to explore the Moon will wear as part of the agency’s Artemis program.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/xemu-eva-seflie.jpg?itok=VxoL27Sw" length="160553" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars</guid>
+ <pubDate>Wed, 09 Oct 2019 15:41 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>453146</dc:identifier>
+</item>
+ <item> <title>NASA Invites Media to Final Orion Jettison Motor Test in Huntsville, Alabama</title>
+ <link>http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama</link>
+ <description>Media are invited to witness the final test for a motor on the launch abort system of NASA’s Orion spacecraft prior to the first crewed Artemis missions to the Moon. The test will take place Wednesday, Oct. 16, at the Redstone Test Center in Huntsville, Alabama.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/f67i5542.jpg?itok=xhOqJZcw" length="3742005" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama</guid>
+ <pubDate>Wed, 09 Oct 2019 13:54 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>453047</dc:identifier>
+</item>
+ <item> <title>NASA Administrator to Visit SpaceX Headquarters</title>
+ <link>http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters</link>
+ <description>NASA Administrator Jim Bridenstine will tour SpaceX headquarters in Hawthorne, California, on Thursday, Oct. 10, to see the progress the company is making to fly astronauts to and from the International Space Station from American soil as part of the agency’s Commercial Crew Program.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/in_flight_abort_arrival-20191002-_f0a8160.jpg?itok=oSQMWf3t" length="1871497" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters</guid>
+ <pubDate>Mon, 07 Oct 2019 15:43 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452969</dc:identifier>
+</item>
+ <item> <title>Ocean-Monitoring Satellite Mission Ends After 11 Successful Years</title>
+ <link>http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years</link>
+ <description>The Jason-2/Ocean Surface Topography Mission (OSTM), the third in a U.S.-European series of satellite missions designed to measure sea surface height, successfully ended its science mission on Oct. 1.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/jason2_1.jpg?itok=QSqJBm1N" length="466327" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years</guid>
+ <pubDate>Fri, 04 Oct 2019 09:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452879</dc:identifier>
+</item>
+ <item> <title>NASA Takes Delivery of First All-Electric Experimental Aircraft</title>
+ <link>http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft</link>
+ <description>The first all-electric configuration of NASA’s X-57 Maxwell now is at the agency’s Armstrong Flight Research Center in Edwards, California.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/afrc2019-0242-59.jpg?itok=NqVdLp2K" length="3733652" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft</guid>
+ <pubDate>Thu, 03 Oct 2019 13:13 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452865</dc:identifier>
+</item>
+ <item> <title>NASA Astronaut Nick Hague, Crewmates Return Safely from International Space Station</title>
+ <link>http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station</link>
+ <description>NASA astronaut Nick Hague returned to Earth from the International Space Station on Thursday, alongside Soyuz commander Alexey Ovchinin of the Russian space agency Roscosmos and visiting astronaut Hazzaa Ali Almansoori from the United Arab Emirates (UAE). The crew landed safely at 6:59 a.m. EDT in Kazakhstan.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/haguereturns_0.jpg?itok=9H2Qy4vf" length="818485" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station</guid>
+ <pubDate>Thu, 03 Oct 2019 07:24 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452841</dc:identifier>
+</item>
+ <item> <title>NASA Awards Contract for Operations, Maintenance of West Virginia Facility</title>
+ <link>http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility</link>
+ <description>NASA has awarded a contract to the West Virginia University Research Corporation in Morgantown, West Virginia, for support services at the agency’s Katherine Johnson Independent Verification &amp; Validation (IV&amp;V) facility in Fairmont, West Virginia.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nasa-logo-web-rgb.jpg?itok=36eU9WU7" length="189751" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility</guid>
+ <pubDate>Wed, 02 Oct 2019 15:49 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452815</dc:identifier>
+</item>
+ <item> <title>NASA to Broadcast Launch of Mission to Study the Frontier of Space</title>
+ <link>http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space</link>
+ <description>NASA’s Ionospheric Connection Explorer (ICON) is scheduled to be air-launched over the Atlantic Ocean at 9:30 p.m. EDT Thursday, Oct. 10, by Northrop Grumman’s Pegasus XL rocket.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/vafb-20190910-ph_rnb01_0004_medium.jpg?itok=Pjg6Y4KG" length="193110" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space</guid>
+ <pubDate>Tue, 01 Oct 2019 12:52 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>452732</dc:identifier>
+</item>
+</channel>
+</rss>
