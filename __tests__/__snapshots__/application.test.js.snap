@@ -35,41 +35,41 @@ exports[`feed are added 1`] = `
         <div class=\\"col-12\\" id=\\"Posts list\\">
             <p>Публикации:</p>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility\\">NASA Awards Contract for Operations, Maintenance of West Virginia Facility</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station\\">NASA Astronaut Nick Hague, Crewmates Return Safely from International Space Station</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft\\">NASA Takes Delivery of First All-Electric Experimental Aircraft</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years\\">Ocean-Monitoring Satellite Mission Ends After 11 Successful Years</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters\\">NASA Administrator to Visit SpaceX Headquarters</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama\\">NASA Invites Media to Final Orion Jettison Motor Test in Huntsville, Alabama</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars\\">NASA Invites Media to Events Highlighting Spacesuits for Moon to Mars</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0\\">NASA Highlights Science on Next Northrop Grumman Mission to Space Station</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space\\">NASA Spacecraft Launches on Mission to Explore Frontier of Space</a>
-                <botton type=\\"botton\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
             </div>
         </div>
     </div>
 </div>"
 `;
 
-exports[`invalid address alert 1`] = `
+exports[`feed are added 2`] = `
 "<div class=\\"modal fade\\" id=\\"feedDescriptionModal\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-labelledby=\\"feedDescriptionModalLabel\\" aria-hidden=\\"true\\">
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
@@ -99,16 +99,47 @@ exports[`invalid address alert 1`] = `
         </div>
         <div class=\\"col-4\\" id=\\"Feeds list\\">
             <p>Список RSS потоков:</p>
+            <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
         <div class=\\"col-12\\" id=\\"Posts list\\">
             <p>Публикации:</p>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility\\">NASA Awards Contract for Operations, Maintenance of West Virginia Facility</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station\\">NASA Astronaut Nick Hague, Crewmates Return Safely from International Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft\\">NASA Takes Delivery of First All-Electric Experimental Aircraft</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years\\">Ocean-Monitoring Satellite Mission Ends After 11 Successful Years</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters\\">NASA Administrator to Visit SpaceX Headquarters</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama\\">NASA Invites Media to Final Orion Jettison Motor Test in Huntsville, Alabama</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars\\">NASA Invites Media to Events Highlighting Spacesuits for Moon to Mars</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0\\">NASA Highlights Science on Next Northrop Grumman Mission to Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space\\">NASA Spacecraft Launches on Mission to Explore Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
         </div>
     </div>
 </div>"
 `;
 
-exports[`not RSS alert 1`] = `
+exports[`feed are added 3`] = `
 "<div class=\\"modal fade\\" id=\\"feedDescriptionModal\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-labelledby=\\"feedDescriptionModalLabel\\" aria-hidden=\\"true\\">
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
@@ -138,10 +169,110 @@ exports[`not RSS alert 1`] = `
         </div>
         <div class=\\"col-4\\" id=\\"Feeds list\\">
             <p>Список RSS потоков:</p>
+            <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
         <div class=\\"col-12\\" id=\\"Posts list\\">
             <p>Публикации:</p>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility\\">NASA Awards Contract for Operations, Maintenance of West Virginia Facility</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station\\">NASA Astronaut Nick Hague, Crewmates Return Safely from International Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft\\">NASA Takes Delivery of First All-Electric Experimental Aircraft</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years\\">Ocean-Monitoring Satellite Mission Ends After 11 Successful Years</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters\\">NASA Administrator to Visit SpaceX Headquarters</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama\\">NASA Invites Media to Final Orion Jettison Motor Test in Huntsville, Alabama</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars\\">NASA Invites Media to Events Highlighting Spacesuits for Moon to Mars</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0\\">NASA Highlights Science on Next Northrop Grumman Mission to Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space\\">NASA Spacecraft Launches on Mission to Explore Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+        </div>
+    </div>
+</div>"
+`;
+
+exports[`feed are added 4`] = `
+"<div class=\\"modal fade\\" id=\\"feedDescriptionModal\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-labelledby=\\"feedDescriptionModalLabel\\" aria-hidden=\\"true\\">
+    <div class=\\"modal-dialog\\" role=\\"document\\">
+        <div class=\\"modal-content\\">
+            <div class=\\"modal-header\\">
+                <h5 class=\\"modal-title\\" id=\\"feedDescriptionModalLabel\\">Feed description</h5>
+                <button type=\\"button\\" class=\\"close\\" data-dismiss=\\"modal\\" aria-label=\\"Close\\">
+                    <span aria-hidden=\\"true\\">×</span>
+                </button>
+            </div>
+            <div class=\\"modal-body\\"></div>
+        </div>
+    </div>
+</div>
+<div class=\\"container-fluid pt-3\\">
+    <div class=\\"row\\">
+        <div class=\\"col-7\\">
+            <div class=\\"jumbotron\\">
+                <form>
+                    <div class=\\"form-group\\">
+                        <label for=\\"RSS feed\\">RSS feed</label>
+                        <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
+                    </div>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class=\\"col-4\\" id=\\"Feeds list\\">
+            <p>Список RSS потоков:</p>
+            <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
+        </div>
+        <div class=\\"w-100\\"></div>
+        <div class=\\"col-12\\" id=\\"Posts list\\">
+            <p>Публикации:</p>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-awards-contract-for-operations-maintenance-of-west-virginia-facility\\">NASA Awards Contract for Operations, Maintenance of West Virginia Facility</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-astronaut-nick-hague-crewmates-return-safely-from-international-space-station\\">NASA Astronaut Nick Hague, Crewmates Return Safely from International Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-takes-delivery-of-first-all-electric-experimental-aircraft\\">NASA Takes Delivery of First All-Electric Experimental Aircraft</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/ocean-monitoring-satellite-mission-ends-after-11-successful-years\\">Ocean-Monitoring Satellite Mission Ends After 11 Successful Years</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-administrator-to-visit-spacex-headquarters\\">NASA Administrator to Visit SpaceX Headquarters</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-final-orion-jettison-motor-test-in-huntsville-alabama\\">NASA Invites Media to Final Orion Jettison Motor Test in Huntsville, Alabama</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-invites-media-to-events-highlighting-spacesuits-for-moon-to-mars\\">NASA Invites Media to Events Highlighting Spacesuits for Moon to Mars</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-highlights-science-on-next-northrop-grumman-mission-to-space-station-0\\">NASA Highlights Science on Next Northrop Grumman Mission to Space Station</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
+            <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-spacecraft-launches-on-mission-to-explore-frontier-of-space\\">NASA Spacecraft Launches on Mission to Explore Frontier of Space</a>
+                <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
+            </div>
         </div>
     </div>
 </div>"

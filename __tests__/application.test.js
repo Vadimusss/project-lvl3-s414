@@ -26,41 +26,33 @@ const pressKey = (key, el = document.body, value = key) => {
 beforeEach(() => {
   const initHtml = fs.readFileSync(path.join(fixuturesPath, 'index.html')).toString();
   document.documentElement.innerHTML = initHtml;
-  runApp();
+  runApp('https://api.codetabs.com/v1/proxy?quest=');
 });
 
 test('feed are added', async () => {
+  jest.setTimeout(20000);
+
   const rssFeedField = document.querySelector('#RSS\\ feed');
   const addFeedButton = document.querySelector('#Add\\ feed');
 
   rssFeedField.focus();
   pressKey('validrss.ru', rssFeedField);
   addFeedButton.click();
-
   await new Promise(r => setTimeout(r, 1000));
   expect(getTree()).toMatchSnapshot();
-});
-
-test('invalid address alert', async () => {
-  const rssFeedField = document.querySelector('#RSS\\ feed');
-  const addFeedButton = document.querySelector('#Add\\ feed');
 
   rssFeedField.focus();
   pressKey('aaa.bbb', rssFeedField);
   addFeedButton.click();
-
-  await new Promise(r => setTimeout(r, 1000));
+  await new Promise(r => setTimeout(r, 3000));
   expect(getTree()).toMatchSnapshot();
-});
-
-test('not RSS alert', async () => {
-  const rssFeedField = document.querySelector('#RSS\\ feed');
-  const addFeedButton = document.querySelector('#Add\\ feed');
 
   rssFeedField.focus();
   pressKey('notrss.ru', rssFeedField);
   addFeedButton.click();
+  await new Promise(r => setTimeout(r, 3000));
+  expect(getTree()).toMatchSnapshot();
 
-  await new Promise(r => setTimeout(r, 1000));
+  await new Promise(r => setTimeout(r, 3000));
   expect(getTree()).toMatchSnapshot();
 });
