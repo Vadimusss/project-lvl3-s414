@@ -1,7 +1,9 @@
 const errors = {
   'Cannot read property \'textContent\' of null': 'Не найден RSS канал, проверьте адрес!',
   'Request failed with status code 400': 'Не верный адрес!',
+  'Error filling out the form': 'Не верный адрес!',
   'Network Error': 'Ошибка сети!',
+  'The query is executed': 'Приложение занято, повторите попытку!',
 };
 
 export default (error) => {
