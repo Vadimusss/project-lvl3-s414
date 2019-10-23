@@ -1,4 +1,3 @@
-import $ from 'jquery/dist/jquery';
 // eslint-disable-next-line no-unused-vars
 import modal from 'bootstrap';
 
@@ -17,13 +16,13 @@ export default (_prop, _action, newPosts) => {
 
     const bottonTag = document.createElement('botton');
     bottonTag.setAttribute('type', 'botton');
+    bottonTag.setAttribute('data-toggle', 'modal');
+    bottonTag.setAttribute('data-target', '#feedDescriptionModal');
     bottonTag.classList.add('btn', 'btn-outline-info', 'btn-sm');
     bottonTag.textContent = 'Description';
     bottonTag.addEventListener('click', () => {
       const feedDescriptionModal = document.querySelector('#feedDescriptionModal .modal-body');
       feedDescriptionModal.textContent = postDescription;
-
-      $('#feedDescriptionModal').modal('show');
     });
 
     divElement.append(aTag);

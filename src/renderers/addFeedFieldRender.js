@@ -1,4 +1,11 @@
-export default (prop, action, newValue) => {
+export default (message) => {
   const addFeedField = document.getElementById('RSS feed');
-  addFeedField.classList.toggle('border-danger', !newValue);
+
+  const dispatcher = {
+    correct: () => addFeedField.classList.remove('border-danger'),
+    incorrect: () => addFeedField.classList.add('border-danger'),
+    clear: () => { addFeedField.value = ''; },
+  };
+
+  dispatcher[message]();
 };
