@@ -2,112 +2,137 @@ import '@babel/polyfill';
 import isURL from 'validator/lib/isURL';
 import axios from 'axios';
 import WatchJS from 'melanke-watchjs';
-import makeAddFeedFieldRender from './renderers/addFeedFieldRender';
-import makeFeedsListRender from './renderers/feedsListRender';
-import makePostsListRender from './renderers/postsListRender';
-import displayError from './renderers/errorRender';
+import StateMachine from 'javascript-state-machine';
+import makeRender from './renderers';
+import makeFeedParser from './feedParser';
 
-export default () => {
+const getRssData = async (corsProxyURL, URL) => {
+  const response = await axios.get(`${corsProxyURL}${URL}`);
+  return makeFeedParser(response.data, URL);
+};
+
+export default (corsProxyURL) => {
   // State
   const state = {
-    corsProxyURL: 'https://api.codetabs.com/v1/proxy?quest=',
-    addFeedFieldValid: null,
-    timer: null,
+    timerId: null,
     feedsList: [],
     newPosts: [],
     displayedPosts: [],
-    isValidURL(URL) {
-      this.addFeedFieldValid = isURL(URL) && this.feedsList.every(feed => feed.feedURL !== URL);
+    appFsm: new StateMachine({
+      init: 'waiting',
+      transitions: [
+        { name: 'startFetching', from: 'waiting', to: 'fetching' },
+        { name: 'endFetching', from: 'fetching', to: 'waiting' },
+      ],
+      methods: {
+        onStartFetching(_lifecycle, URLs) {
+          clearTimeout(state.timerId);
+          state.updateFeedsData(URLs);
+        },
+        onEndFetching() {
+          state.timerId = setTimeout(() => {
+            state.appFsm.startFetching(state.getAddedFeedsURLs());
+          }, 5000);
+        },
+        onInvalidTransition() {
+          makeRender.errorMessage(new Error('The query is executed'));
+        },
+      },
+    }),
+    feedFieldFsm: new StateMachine({
+      init: 'empty',
+      transitions: [
+        {
+          name: 'focus',
+          from: ['empty', 'valid', 'invalid'],
+          to: e => (state.isValidURL(e.target.value) ? 'valid' : 'invalid'),
+        },
+        {
+          name: 'input',
+          from: ['empty', 'valid', 'invalid'],
+          to: e => (state.isValidURL(e.target.value) ? 'valid' : 'invalid'),
+        },
+        {
+          name: 'submit',
+          from: 'valid',
+          to: 'empty',
+        },
+      ],
+      methods: {
+        onInvalid() {
+          makeRender.addFeedField('incorrect');
+        },
+        onValid() {
+          makeRender.addFeedField('correct');
+        },
+        onSubmit(_lifecycle, URL) {
+          makeRender.addFeedField('clear');
+          state.appFsm.startFetching([URL]);
+        },
+        onInvalidTransition() {
+          makeRender.errorMessage(new Error('Error filling out the form'));
+        },
+      },
+    }),
+    getAddedFeedsURLs() {
+      return this.feedsList.map(({ feedURL }) => feedURL);
     },
-    convertPostsToObjects(posts) {
-      return posts.map((post) => {
-        const postTitle = post.querySelector('title').textContent;
-        const postDescription = post.querySelector('description').textContent;
-        const postLink = post.querySelector('link').textContent;
-
-        return { postTitle, postDescription, postLink };
-      });
+    isValidURL(URL) {
+      return isURL(URL) && this.feedsList.every(feed => feed.feedURL !== URL);
+    },
+    isNewFeed(newFeed) {
+      return this.feedsList.every(displayedFeed => newFeed.feedURL !== displayedFeed.feedURL);
     },
     filterOutNewPosts(posts) {
       return posts.filter(addedPost => this.displayedPosts
         .every(displayedPost => displayedPost.postTitle !== addedPost.postTitle));
     },
+    addFeed(addedFeed) {
+      if (this.isNewFeed(addedFeed)) {
+        this.feedsList = this.feedsList.concat(addedFeed);
+      }
+    },
     addPosts(addedPosts) {
       if (addedPosts.length === 0) {
         return;
       }
-
       this.displayedPosts = [...this.newPosts, ...this.displayedPosts];
-      this.newPosts = this.filterOutNewPosts(this.convertPostsToObjects(addedPosts));
+      this.newPosts = this.filterOutNewPosts(addedPosts);
     },
-    addFeed(URL) {
-      axios.get(`${state.corsProxyURL}${URL}`)
+    updateFeedsData(URLs) {
+      Promise.all(URLs.map(URL => getRssData(corsProxyURL, URL)
         .then((response) => {
-          const feed = new DOMParser().parseFromString(response.data, 'text/xml');
-          const feedURL = URL;
-          const feedTitle = feed.querySelector('channel title').textContent;
-          const feedDescription = feed.querySelector('channel description').textContent;
-          const feedPosts = [...feed.getElementsByTagName('item')];
+          const { feedURL, feedTitle, feedDescription } = response;
+          const { feedPosts } = response;
 
-          this.feedsList = this.feedsList.concat({
-            feedURL,
-            feedTitle,
-            feedDescription,
-          });
-
-          this.addPosts(feedPosts);
-          this.updatePostsList();
-        })
-        .catch((error) => {
-          displayError(error);
-        });
-    },
-    updatePostsList() {
-      const allFeedsURL = this.feedsList.map(({ feedURL }) => feedURL);
-
-      Promise.all(allFeedsURL.map(URL => axios.get(`${state.corsProxyURL}${URL}`)
-        .then((response) => {
-          const feed = new DOMParser().parseFromString(response.data, 'text/xml');
-          const feedPosts = [...feed.getElementsByTagName('item')];
+          this.addFeed({ feedURL, feedTitle, feedDescription });
           this.addPosts(feedPosts);
         })))
-        .then(() => {
-          clearTimeout(this.timer);
-          this.timer = setTimeout(() => {
-            this.updatePostsList();
-          }, 5000);
-        })
         .catch((error) => {
-          displayError(error);
-        });
+          makeRender.errorMessage(error);
+        })
+        .finally(() => this.appFsm.endFetching());
     },
   };
 
   // Observer
-  WatchJS.watch(state, 'addFeedFieldValid', makeAddFeedFieldRender);
-  WatchJS.watch(state, 'feedsList', makeFeedsListRender);
-  WatchJS.watch(state, 'newPosts', makePostsListRender);
+  WatchJS.watch(state, 'feedsList', makeRender.feedsList);
+  WatchJS.watch(state, 'newPosts', makeRender.postsList);
 
   // Controller
+  const addFeedForm = document.querySelector('.jumbotron form');
   const addFeedField = document.getElementById('RSS feed');
-  const addFeedButton = document.getElementById('Add feed');
 
   addFeedField.addEventListener('input', (e) => {
-    state.isValidURL(e.target.value);
+    state.feedFieldFsm.input(e);
   });
 
   addFeedField.addEventListener('focus', (e) => {
-    state.isValidURL(e.target.value);
+    state.feedFieldFsm.focus(e);
   });
 
-  addFeedButton.addEventListener('click', (e) => {
+  addFeedForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    if (state.addFeedFieldValid) {
-      state.addFeed(addFeedField.value);
-      addFeedField.value = '';
-    } else {
-      state.addFeedFieldValid = false;
-    }
+    state.feedFieldFsm.submit(addFeedField.value);
   });
 };
