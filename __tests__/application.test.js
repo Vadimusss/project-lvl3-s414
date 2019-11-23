@@ -26,7 +26,7 @@ const pressKey = (key, el = document.body, value = key) => {
 beforeEach(() => {
   const initHtml = fs.readFileSync(path.join(fixuturesPath, 'index.html')).toString();
   document.documentElement.innerHTML = initHtml;
-  runApp('https://api.codetabs.com/v1/proxy?quest=');
+  runApp();
 });
 
 test('feed are added', async () => {
@@ -34,23 +34,27 @@ test('feed are added', async () => {
 
   const rssFeedField = document.querySelector('#RSS\\ feed');
   const addFeedButton = document.querySelector('#Add\\ feed');
+  // const addFeedForm = document.querySelector('.jumbotron form');
 
   rssFeedField.focus();
   pressKey('validrss.ru', rssFeedField);
+  await new Promise(r => setTimeout(r, 1000));
   addFeedButton.click();
   await new Promise(r => setTimeout(r, 1000));
   expect(getTree()).toMatchSnapshot();
 
   rssFeedField.focus();
   pressKey('aaa.bbb', rssFeedField);
+  await new Promise(r => setTimeout(r, 1000));
   addFeedButton.click();
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise(r => setTimeout(r, 1000));
   expect(getTree()).toMatchSnapshot();
 
   rssFeedField.focus();
   pressKey('notrss.ru', rssFeedField);
+  await new Promise(r => setTimeout(r, 1000));
   addFeedButton.click();
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise(r => setTimeout(r, 1000));
   expect(getTree()).toMatchSnapshot();
 
   await new Promise(r => setTimeout(r, 3000));

@@ -5,7 +5,7 @@ exports[`feed are added 1`] = `
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
             <div class=\\"modal-header\\">
-                <h5 class=\\"modal-title\\" id=\\"feedDescriptionModalLabel\\">Feed description</h5>
+                <p class=\\"modal-title h4\\" id=\\"feedDescriptionModalLabel\\">Feed description</p>
                 <button type=\\"button\\" class=\\"close\\" data-dismiss=\\"modal\\" aria-label=\\"Close\\">
                     <span aria-hidden=\\"true\\">×</span>
                 </button>
@@ -23,7 +23,7 @@ exports[`feed are added 1`] = `
                         <label for=\\"RSS feed\\">RSS feed</label>
                         <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
             </div>
         </div>
@@ -74,7 +74,7 @@ exports[`feed are added 2`] = `
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
             <div class=\\"modal-header\\">
-                <h5 class=\\"modal-title\\" id=\\"feedDescriptionModalLabel\\">Feed description</h5>
+                <p class=\\"modal-title h4\\" id=\\"feedDescriptionModalLabel\\">Feed description</p>
                 <button type=\\"button\\" class=\\"close\\" data-dismiss=\\"modal\\" aria-label=\\"Close\\">
                     <span aria-hidden=\\"true\\">×</span>
                 </button>
@@ -93,7 +93,7 @@ exports[`feed are added 2`] = `
                         <label for=\\"RSS feed\\">RSS feed</label>
                         <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"aaa.bbb\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
             </div>
         </div>
@@ -144,7 +144,7 @@ exports[`feed are added 3`] = `
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
             <div class=\\"modal-header\\">
-                <h5 class=\\"modal-title\\" id=\\"feedDescriptionModalLabel\\">Feed description</h5>
+                <p class=\\"modal-title h4\\" id=\\"feedDescriptionModalLabel\\">Feed description</p>
                 <button type=\\"button\\" class=\\"close\\" data-dismiss=\\"modal\\" aria-label=\\"Close\\">
                     <span aria-hidden=\\"true\\">×</span>
                 </button>
@@ -163,7 +163,7 @@ exports[`feed are added 3`] = `
                         <label for=\\"RSS feed\\">RSS feed</label>
                         <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
             </div>
         </div>
@@ -214,7 +214,7 @@ exports[`feed are added 4`] = `
     <div class=\\"modal-dialog\\" role=\\"document\\">
         <div class=\\"modal-content\\">
             <div class=\\"modal-header\\">
-                <h5 class=\\"modal-title\\" id=\\"feedDescriptionModalLabel\\">Feed description</h5>
+                <p class=\\"modal-title h4\\" id=\\"feedDescriptionModalLabel\\">Feed description</p>
                 <button type=\\"button\\" class=\\"close\\" data-dismiss=\\"modal\\" aria-label=\\"Close\\">
                     <span aria-hidden=\\"true\\">×</span>
                 </button>
@@ -232,7 +232,7 @@ exports[`feed are added 4`] = `
                         <label for=\\"RSS feed\\">RSS feed</label>
                         <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
             </div>
         </div>
