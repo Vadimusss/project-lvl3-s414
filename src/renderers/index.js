@@ -1,10 +1,10 @@
-import addFeedFieldRender from './addFeedFieldRender';
+import formRender from './formRender';
 import feedsListRender from './feedsListRender';
 import postsListRender from './postsListRender';
 import errorMessageRender from './errorRender';
 
 const makeRender = {
-  addFeedField: addFeedFieldRender,
+  form: formRender,
   feedsList: feedsListRender,
   postsList: postsListRender,
   errorMessage: errorMessageRender,

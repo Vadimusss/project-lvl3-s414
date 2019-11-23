@@ -1,16 +1,15 @@
 const errors = {
   'Cannot read property \'textContent\' of null': 'Не найден RSS канал, проверьте адрес!',
   'Request failed with status code 400': 'Не верный адрес!',
-  'Error filling out the form': 'Не верный адрес!',
   'Network Error': 'Ошибка сети!',
-  'The query is executed': 'Приложение занято, повторите попытку!',
+  'Unknown error': 'Неизвестная ошибка!',
 };
 
-export default (error) => {
+export default (_prop, _action, allErrors) => {
   const errorDiv = document.createElement('div');
   errorDiv.classList.add('alert', 'alert-danger');
   errorDiv.setAttribute('role', 'alert');
-  errorDiv.textContent = errors[error.message];
+  errorDiv.textContent = errors[allErrors[0]];
 
   const addFeedForm = document.querySelector('.jumbotron');
   const container = addFeedForm.parentNode;
