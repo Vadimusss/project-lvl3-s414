@@ -1,21 +1,20 @@
 const postParser = posts => posts.map((post) => {
-  const postTitle = post.querySelector('title').textContent;
-  const postDescription = post.querySelector('description').textContent;
-  const postLink = post.querySelector('link').textContent;
+  const title = post.querySelector('title').textContent;
+  const description = post.querySelector('description').textContent;
+  const link = post.querySelector('link').textContent;
 
-  return { postTitle, postDescription, postLink };
+  return { title, description, link };
 });
 
-export default (feedData, feedURL) => {
+export default (feedData) => {
   const feed = new DOMParser().parseFromString(feedData, 'text/xml');
-  const feedTitle = feed.querySelector('channel title').textContent;
-  const feedDescription = feed.querySelector('channel description').textContent;
-  const feedPosts = postParser([...feed.getElementsByTagName('item')]);
+  const title = feed.querySelector('channel title').textContent;
+  const description = feed.querySelector('channel description').textContent;
+  const posts = postParser([...feed.getElementsByTagName('item')]);
 
   return {
-    feedURL,
-    feedTitle,
-    feedDescription,
-    feedPosts,
+    title,
+    description,
+    posts,
   };
 };
