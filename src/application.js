@@ -5,92 +5,82 @@ import WatchJS from 'melanke-watchjs';
 import makeRender from './renderers';
 import makeFeedParser from './feedParser';
 
-const getRssData = async (corsProxyURL, URL) => {
-  const response = await axios.get(`${corsProxyURL}${URL}`);
-  return makeFeedParser(response.data, URL);
-};
-
 export default () => {
   const corsProxyURL = 'https://api.codetabs.com/v1/proxy?quest=';
   // State
   const state = {
-    appState: 'waiting',
+    fetchingState: null,
     formState: 'empty',
     timerId: null,
-    feedsURLs: [],
-    feedsList: [],
-    newPosts: [],
-    displayedPosts: [],
+    feeds: [],
+    posts: [],
     errors: [],
-    appStateManager() {
-      switch (this.appState) {
-        case 'addingFeed':
-          this.updateFeedsData();
-          break;
-        case 'fetching':
-          break;
-        case 'updating':
-          clearTimeout(state.timerId);
-          this.timerId = setTimeout(() => this.updateFeedsData(), 5000);
-          break;
-        case 'outputingError':
-          this.feedsURLs = this.feedsURLs.slice(0, -1);
-          this.appState = 'updating';
-          break;
-        default:
-          this.errors = ['Unknown error', ...state.errors];
-      }
-    },
     isValidURL(URL) {
-      return isURL(URL) && this.feedsList.every(feed => feed.feedURL !== URL);
+      return isURL(URL) && this.feeds.every(feed => feed.feedURL !== URL);
     },
-    isNewFeed(newFeed) {
-      return this.feedsList.every(displayedFeed => newFeed.feedURL !== displayedFeed.feedURL);
+    filterOutNewPosts(addedPosts) {
+      return addedPosts.filter(addedPost => this.posts
+        .every(displayedPost => displayedPost.title !== addedPost.title));
     },
-    filterOutNewPosts(posts) {
-      return posts.filter(addedPost => this.displayedPosts
-        .every(displayedPost => displayedPost.postTitle !== addedPost.postTitle));
+    getFeedsURLs() {
+      return this.feeds.map(({ URL }) => URL);
     },
-    addFeed(addedFeed) {
-      if (this.isNewFeed(addedFeed)) {
-        this.feedsList = this.feedsList.concat(addedFeed);
+    async addNewFeed(addingFeedURL) {
+      if (this.state === 'fetching') {
+        setTimeout(() => this.addNewFeed(), 1000, addingFeedURL);
       }
-    },
-    addPosts(addedPosts) {
-      if (addedPosts.length === 0) {
+      const feed = await this.getFeedData(addingFeedURL);
+      if (!feed) {
         return;
       }
-      this.displayedPosts = [...this.newPosts, ...this.displayedPosts];
-      this.newPosts = this.filterOutNewPosts(addedPosts);
+      const {
+        URL,
+        title,
+        description,
+        posts,
+      } = feed;
+      this.feeds = [...this.feeds, { URL, title, description }];
+      this.posts = [...this.posts, ...posts];
     },
-    async updateFeedsData() {
-      this.appState = 'fetching';
+    async updatePosts() {
+      if (this.state === 'fetching') {
+        return;
+      }
+      this.getFeedsURLs().forEach(async (URL) => {
+        const { posts } = await this.getFeedData(URL);
+        const newPosts = this.filterOutNewPosts(posts);
+        if (newPosts.length === 0) {
+          return;
+        }
+        this.posts = [...this.posts, ...newPosts];
+      });
+    },
+    async getFeedData(URL) {
+      this.fetchingState = 'fetching';
       try {
-        const allFeedsData = await Promise.all(this.feedsURLs
-          .map(URL => getRssData(corsProxyURL, URL)));
-
-        allFeedsData.forEach(({
-          feedURL,
-          feedTitle,
-          feedDescription,
-          feedPosts,
-        }) => {
-          this.addFeed({ feedURL, feedTitle, feedDescription });
-          this.addPosts(feedPosts);
-          this.appState = 'updating';
-        });
+        const response = await axios.get(`${corsProxyURL}${URL}`);
+        const { title, description, posts } = makeFeedParser(response.data);
+        return {
+          URL,
+          title,
+          description,
+          posts,
+        };
       } catch (error) {
         this.errors = [error.message, ...this.errors];
-        this.appState = 'outputingError';
+        return false;
+      } finally {
+        clearTimeout(this.timerId);
+        this.timerId = setTimeout(() => this.updatePosts(), 5000);
+        this.fetchingState = 'updating';
       }
     },
   };
 
   // Observer
   WatchJS.watch(state, 'formState', makeRender.form);
-  WatchJS.watch(state, 'appState', state.appStateManager);
-  WatchJS.watch(state, 'feedsList', makeRender.feedsList);
-  WatchJS.watch(state, 'newPosts', makeRender.postsList);
+  WatchJS.watch(state, 'feeds', makeRender.feedsList);
+  WatchJS.watch(state, 'posts', makeRender.postsList);
   WatchJS.watch(state, 'errors', makeRender.errorMessage);
 
   // Controller
@@ -107,8 +97,7 @@ export default () => {
 
   addFeedForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    state.feedsURLs = [...state.feedsURLs, addFeedField.value];
-    state.appState = 'addingFeed';
+    state.addNewFeed(addFeedField.value);
     state.formState = 'empty';
   });
 };
