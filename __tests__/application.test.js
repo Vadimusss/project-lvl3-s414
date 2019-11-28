@@ -34,7 +34,6 @@ test('feed are added', async () => {
 
   const rssFeedField = document.querySelector('#RSS\\ feed');
   const addFeedButton = document.querySelector('#Add\\ feed');
-  // const addFeedForm = document.querySelector('.jumbotron form');
 
   rssFeedField.focus();
   pressKey('validrss.ru', rssFeedField);

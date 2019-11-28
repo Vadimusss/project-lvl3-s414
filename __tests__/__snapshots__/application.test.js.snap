@@ -21,7 +21,7 @@ exports[`feed are added 1`] = `
                 <form>
                     <div class=\\"form-group\\">
                         <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
+                        <textarea name=\\"URL\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
                     </div>
                     <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
@@ -91,7 +91,7 @@ exports[`feed are added 2`] = `
                 <form>
                     <div class=\\"form-group\\">
                         <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"aaa.bbb\\"></textarea>
+                        <textarea name=\\"URL\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"aaa.bbb\\"></textarea>
                     </div>
                     <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
@@ -161,7 +161,7 @@ exports[`feed are added 3`] = `
                 <form>
                     <div class=\\"form-group\\">
                         <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
+                        <textarea name=\\"URL\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
                     <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
@@ -230,7 +230,7 @@ exports[`feed are added 4`] = `
                 <form>
                     <div class=\\"form-group\\">
                         <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
+                        <textarea name=\\"URL\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
                     <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
                 </form>
