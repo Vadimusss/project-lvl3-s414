@@ -97,7 +97,8 @@ export default () => {
 
   addFeedForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    state.addNewFeed(addFeedField.value);
+    const formData = new FormData(e.target);
+    state.addNewFeed(formData.get('URL'));
     state.formState = 'empty';
   });
 };
