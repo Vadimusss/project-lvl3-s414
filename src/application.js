@@ -10,7 +10,7 @@ export default () => {
   const state = {
     fetchingState: null,
     formState: 'empty',
-    updateTimerId: null,
+    updatetimerId: null,
     feeds: [],
     posts: [],
     errors: [],
@@ -18,7 +18,7 @@ export default () => {
       return isURL(URL) && state.feeds.every(feed => feed.feedURL !== URL);
     },
     filterOutNewPosts(addedPosts) {
-      return addedPosts.filter(addedPost => state.posts
+      return addedPosts.filter(addedPost => this.posts
         .every(displayedPost => displayedPost.title !== addedPost.title));
     },
     getFeedsURLs() {
@@ -52,8 +52,8 @@ export default () => {
   };
 
   const setUpdateTimer = (f) => {
-    clearTimeout(state.updateTimerId);
-    state.timerId = setTimeout(() => f(), 5000);
+    clearTimeout(state.updatetimerId);
+    state.updatetimerId = setTimeout(() => f(), 5000);
   };
 
   const updatPosts = async () => {
@@ -68,7 +68,7 @@ export default () => {
       if (newPosts.length === 0) {
         return;
       }
-      state.posts.push(newPosts);
+      posts.forEach(post => state.posts.push(post));
     });
     setUpdateTimer(updatPosts);
   };
@@ -88,7 +88,7 @@ export default () => {
         posts,
       } = feed;
       state.feeds.push({ URL, title, description });
-      state.posts.push(posts);
+      posts.forEach(post => state.posts.push(post));
     }
     setUpdateTimer(updatPosts);
   };
