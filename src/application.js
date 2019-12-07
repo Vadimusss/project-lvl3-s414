@@ -6,74 +6,23 @@ import makeRender from './renderers';
 import makeFeedParser from './feedParser';
 
 export default () => {
-  const corsProxyURL = 'https://api.codetabs.com/v1/proxy?quest=';
   // State
   const state = {
     fetchingState: null,
     formState: 'empty',
-    timerId: null,
+    updateTimerId: null,
     feeds: [],
     posts: [],
     errors: [],
     isValidURL(URL) {
-      return isURL(URL) && this.feeds.every(feed => feed.feedURL !== URL);
+      return isURL(URL) && state.feeds.every(feed => feed.feedURL !== URL);
     },
     filterOutNewPosts(addedPosts) {
-      return addedPosts.filter(addedPost => this.posts
+      return addedPosts.filter(addedPost => state.posts
         .every(displayedPost => displayedPost.title !== addedPost.title));
     },
     getFeedsURLs() {
-      return this.feeds.map(({ URL }) => URL);
-    },
-    async addNewFeed(addingFeedURL) {
-      if (this.state === 'fetching') {
-        setTimeout(() => this.addNewFeed(), 1000, addingFeedURL);
-      }
-      const feed = await this.getFeedData(addingFeedURL);
-      if (!feed) {
-        return;
-      }
-      const {
-        URL,
-        title,
-        description,
-        posts,
-      } = feed;
-      this.feeds = [...this.feeds, { URL, title, description }];
-      this.posts = [...this.posts, ...posts];
-    },
-    async updatePosts() {
-      if (this.state === 'fetching') {
-        return;
-      }
-      this.getFeedsURLs().forEach(async (URL) => {
-        const { posts } = await this.getFeedData(URL);
-        const newPosts = this.filterOutNewPosts(posts);
-        if (newPosts.length === 0) {
-          return;
-        }
-        this.posts = [...this.posts, ...newPosts];
-      });
-    },
-    async getFeedData(URL) {
-      this.fetchingState = 'fetching';
-      try {
-        const response = await axios.get(`${corsProxyURL}${URL}`);
-        const { title, description, posts } = makeFeedParser(response.data);
-        return {
-          URL,
-          title,
-          description,
-          posts,
-        };
-      } catch (error) {
-        this.errors = [error.message, ...this.errors];
-        return false;
-      } finally {
-        clearTimeout(this.timerId);
-        this.timerId = setTimeout(() => this.updatePosts(), 5000);
-        this.fetchingState = 'updating';
-      }
+      return state.feeds.map(({ URL }) => URL);
     },
   };
 
@@ -84,6 +33,66 @@ export default () => {
   WatchJS.watch(state, 'errors', makeRender.errorMessage);
 
   // Controller
+  const corsProxyURL = 'https://api.codetabs.com/v1/proxy?quest=';
+
+  const getFeed = async (URL) => {
+    try {
+      const response = await axios.get(URL);
+      const { title, description, posts } = makeFeedParser(response.data);
+      return {
+        URL,
+        title,
+        description,
+        posts,
+      };
+    } catch (error) {
+      state.errors.push(error.message);
+      return false;
+    }
+  };
+
+  const setUpdateTimer = (f) => {
+    clearTimeout(state.updateTimerId);
+    state.timerId = setTimeout(() => f(), 5000);
+  };
+
+  const updatPosts = async () => {
+    if (state.state === 'fetching') {
+      setUpdateTimer(updatPosts);
+    }
+    state.getFeedsURLs().forEach(async (URL) => {
+      state.fetchingState = 'fetching';
+      const { posts } = await getFeed(URL);
+      state.fetchingState = 'waiting';
+      const newPosts = state.filterOutNewPosts(posts);
+      if (newPosts.length === 0) {
+        return;
+      }
+      state.posts.push(newPosts);
+    });
+    setUpdateTimer(updatPosts);
+  };
+
+  const addNewFeed = async (feedURL) => {
+    if (state.state === 'fetching') {
+      setTimeout(() => state.addNewFeed(), 500, feedURL);
+    }
+    state.fetchingState = 'fetching';
+    const feed = await getFeed(feedURL);
+    state.fetchingState = 'waiting';
+    if (feed) {
+      const {
+        URL,
+        title,
+        description,
+        posts,
+      } = feed;
+      state.feeds.push({ URL, title, description });
+      state.posts.push(posts);
+    }
+    setUpdateTimer(updatPosts);
+  };
+
   const addFeedForm = document.querySelector('.jumbotron form');
   const addFeedField = document.getElementById('RSS feed');
 
@@ -98,7 +107,7 @@ export default () => {
   addFeedForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    state.addNewFeed(formData.get('URL'));
+    addNewFeed(`${corsProxyURL}${formData.get('URL')}`);
     state.formState = 'empty';
   });
 };
