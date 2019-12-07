@@ -1,10 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import modal from 'bootstrap';
 
-export default (_prop, _action, allPosts, oldPosts) => {
+export default (_prop, _action, newPosts) => {
   const postsList = document.getElementById('Posts list');
   const postListTitle = postsList.querySelector('p');
-  const newPosts = allPosts.slice(-(allPosts.length - oldPosts.length));
   newPosts.forEach(({ title, description, link }) => {
     const divElement = document.createElement('div');
     divElement.classList.add('mb-2', 'p-1');

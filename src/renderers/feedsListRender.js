@@ -1,5 +1,5 @@
 export default (_prop, _action, newFeed) => {
-  const { title, description } = newFeed[newFeed.length - 1];
+  const { title, description } = newFeed;
 
   const feedList = document.getElementById('Feeds list');
   const pTag = document.createElement('p');
