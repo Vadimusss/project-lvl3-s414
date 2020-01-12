@@ -4,6 +4,7 @@ export default (_prop, _action, newState) => {
 
   const dispatcher = {
     valid: () => {
+      addFeedField.removeAttribute('disabled');
       addFeedField.classList.remove('border-danger');
       addFeedbutton.removeAttribute('disabled');
     },
@@ -11,7 +12,12 @@ export default (_prop, _action, newState) => {
       addFeedField.classList.add('border-danger');
       addFeedbutton.setAttribute('disabled', true);
     },
+    blocked: () => {
+      addFeedField.setAttribute('disabled', true);
+      addFeedbutton.setAttribute('disabled', true);
+    },
     empty: () => {
+      addFeedField.removeAttribute('disabled');
       addFeedField.value = '';
       addFeedbutton.setAttribute('disabled', true);
     },
