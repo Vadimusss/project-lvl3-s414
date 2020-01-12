@@ -3,12 +3,12 @@ import isURL from 'validator/lib/isURL';
 import axios from 'axios';
 import WatchJS from 'melanke-watchjs';
 import makeRender from './renderers';
-import makeFeedParser from './feedParser';
+import parsingFeedData from './feedParser';
 
 export default () => {
   // State
   const state = {
-    fetchingState: null,
+    fetchingState: 'waiting',
     formState: 'empty',
     updatetimerId: null,
     feeds: [],
@@ -36,61 +36,59 @@ export default () => {
   const corsProxyURL = 'https://api.codetabs.com/v1/proxy?quest=';
 
   const getFeed = async (URL) => {
-    try {
-      const response = await axios.get(URL);
-      const { title, description, posts } = makeFeedParser(response.data);
-      return {
-        URL,
-        title,
-        description,
-        posts,
-      };
-    } catch (error) {
-      state.errors.push(error.message);
-      return false;
-    }
+    const response = await axios.get(URL);
+    const { title, description, posts } = parsingFeedData(response.data);
+    return {
+      URL,
+      title,
+      description,
+      posts,
+    };
   };
 
-  const setUpdateTimer = (f) => {
-    clearTimeout(state.updatetimerId);
-    state.updatetimerId = setTimeout(() => f(), 5000);
-  };
-
-  const updatPosts = async () => {
+  const updatePosts = async () => {
     if (state.state === 'fetching') {
-      setUpdateTimer(updatPosts);
+      clearTimeout(state.updatetimerId);
+      state.updatetimerId = setTimeout(updatePosts, 5000);
+      return;
     }
     state.getFeedsURLs().forEach(async (URL) => {
-      state.fetchingState = 'fetching';
-      const { posts } = await getFeed(URL);
-      state.fetchingState = 'waiting';
-      const newPosts = state.filterOutNewPosts(posts);
-      if (newPosts.length === 0) {
-        return;
+      try {
+        state.fetchingState = 'fetching';
+        const { posts } = await getFeed(URL);
+        const newPosts = state.filterOutNewPosts(posts);
+        if (newPosts.length === 0) {
+          return;
+        }
+        posts.forEach(post => state.posts.push(post));
+      } catch (error) {
+        state.updatingErrors.push(error.message);
+      } finally {
+        state.fetchingState = 'waiting';
       }
-      posts.forEach(post => state.posts.push(post));
     });
-    setUpdateTimer(updatPosts);
+    clearTimeout(state.updatetimerId);
+    state.updatetimerId = setTimeout(updatePosts, 5000);
   };
 
   const addNewFeed = async (feedURL) => {
     if (state.state === 'fetching') {
-      setTimeout(() => state.addNewFeed(), 500, feedURL);
+      setTimeout(addNewFeed, 500, feedURL);
+      return;
     }
     state.fetchingState = 'fetching';
     const feed = await getFeed(feedURL);
-    state.fetchingState = 'waiting';
-    if (feed) {
-      const {
-        URL,
-        title,
-        description,
-        posts,
-      } = feed;
-      state.feeds.push({ URL, title, description });
-      posts.forEach(post => state.posts.push(post));
-    }
-    setUpdateTimer(updatPosts);
+    const {
+      URL,
+      title,
+      description,
+      posts,
+    } = feed;
+    state.feeds.push({ URL, title, description });
+    posts.forEach(post => state.posts.push(post));
+
+    clearTimeout(state.updatetimerId);
+    state.updatetimerId = setTimeout(updatePosts, 5000);
   };
 
   const addFeedForm = document.querySelector('.jumbotron form');
@@ -104,10 +102,18 @@ export default () => {
     state.formState = state.isValidURL(value) ? 'valid' : 'invalid';
   });
 
-  addFeedForm.addEventListener('submit', (e) => {
+  addFeedForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    addNewFeed(`${corsProxyURL}${formData.get('URL')}`);
-    state.formState = 'empty';
+    try {
+      state.formState = 'blocked';
+      await addNewFeed(`${corsProxyURL}${formData.get('URL')}`);
+      state.formState = 'empty';
+    } catch (error) {
+      state.errors.push(error.message);
+      state.formState = 'valid';
+    } finally {
+      state.fetchingState = 'waiting';
+    }
   });
 };
