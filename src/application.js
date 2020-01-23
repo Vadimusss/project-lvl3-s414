@@ -9,13 +9,18 @@ export default () => {
   // State
   const state = {
     fetchingState: 'waiting',
-    formState: 'empty',
+    formState: {
+      valid: true,
+      formFieldDisabled: false,
+      submitEnabled: false,
+      formFieldText: '',
+    },
     updatetimerId: null,
     feeds: [],
     posts: [],
     errors: [],
     isValidURL(URL) {
-      return isURL(URL) && state.feeds.every(feed => feed.feedURL !== URL);
+      return isURL(URL) && this.feeds.every(feed => feed.URL !== URL);
     },
     filterOutNewPosts(addedPosts) {
       return addedPosts.filter(addedPost => this.posts
@@ -37,12 +42,11 @@ export default () => {
 
   const getFeed = async (URL) => {
     const response = await axios.get(URL);
-    const { title, description, posts } = parsingFeedData(response.data);
+    const { channelTitle, channelDescription, channelPosts } = parsingFeedData(response.data);
     return {
-      URL,
-      title,
-      description,
-      posts,
+      channelTitle,
+      channelDescription,
+      channelPosts,
     };
   };
 
@@ -55,12 +59,12 @@ export default () => {
     state.getFeedsURLs().forEach(async (URL) => {
       try {
         state.fetchingState = 'fetching';
-        const { posts } = await getFeed(URL);
-        const newPosts = state.filterOutNewPosts(posts);
+        const { channelPosts } = await getFeed(`${corsProxyURL}${URL}`);
+        const newPosts = state.filterOutNewPosts(channelPosts);
         if (newPosts.length === 0) {
           return;
         }
-        posts.forEach(post => state.posts.push(post));
+        newPosts.forEach(post => state.posts.push(post));
       } catch (error) {
         state.updatingErrors.push(error.message);
       } finally {
@@ -71,21 +75,20 @@ export default () => {
     state.updatetimerId = setTimeout(updatePosts, 5000);
   };
 
-  const addNewFeed = async (feedURL) => {
+  const addNewFeed = async (URL) => {
     if (state.state === 'fetching') {
-      setTimeout(addNewFeed, 500, feedURL);
+      setTimeout(addNewFeed, 500, URL);
       return;
     }
     state.fetchingState = 'fetching';
-    const feed = await getFeed(feedURL);
+    const feed = await getFeed(`${corsProxyURL}${URL}`);
     const {
-      URL,
-      title,
-      description,
-      posts,
+      channelTitle,
+      channelDescription,
+      channelPosts,
     } = feed;
-    state.feeds.push({ URL, title, description });
-    posts.forEach(post => state.posts.push(post));
+    state.feeds.push({ URL, channelTitle, channelDescription });
+    channelPosts.forEach(post => state.posts.push(post));
 
     clearTimeout(state.updatetimerId);
     state.updatetimerId = setTimeout(updatePosts, 5000);
@@ -95,23 +98,28 @@ export default () => {
   const addFeedField = document.getElementById('RSS feed');
 
   addFeedField.addEventListener('input', ({ target: { value } }) => {
-    state.formState = state.isValidURL(value) ? 'valid' : 'invalid';
+    const isValid = state.isValidURL(value);
+    state.formState.valid = isValid;
+    state.formState.submitEnabled = isValid;
+    state.formState.formFieldText = value;
   });
 
   addFeedField.addEventListener('focus', ({ target: { value } }) => {
-    state.formState = state.isValidURL(value) ? 'valid' : 'invalid';
+    const isValid = state.isValidURL(value);
+    state.formState.valid = isValid;
   });
 
   addFeedForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
-      state.formState = 'blocked';
-      await addNewFeed(`${corsProxyURL}${formData.get('URL')}`);
-      state.formState = 'empty';
+      state.formState.formFieldDisabled = true;
+      await addNewFeed(formData.get('URL'));
+      state.formState.formFieldText = '';
+      state.formState.formFieldDisabled = false;
     } catch (error) {
       state.errors.push(error.message);
-      state.formState = 'valid';
+      state.formState.formFieldDisabled = false;
     } finally {
       state.fetchingState = 'waiting';
     }
