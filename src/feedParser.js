@@ -8,13 +8,13 @@ const makePostParsing = posts => posts.map((post) => {
 
 export default (feedData) => {
   const feed = new DOMParser().parseFromString(feedData, 'text/xml');
-  const title = feed.querySelector('channel title').textContent;
-  const description = feed.querySelector('channel description').textContent;
-  const posts = makePostParsing([...feed.getElementsByTagName('item')]);
+  const channelTitle = feed.querySelector('channel title').textContent;
+  const channelDescription = feed.querySelector('channel description').textContent;
+  const channelPosts = makePostParsing([...feed.getElementsByTagName('item')]);
 
   return {
-    title,
-    description,
-    posts,
+    channelTitle,
+    channelDescription,
+    channelPosts,
   };
 };
