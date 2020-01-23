@@ -1,27 +1,33 @@
-export default (_prop, _action, newState) => {
+export default (prop, _action, newState) => {
   const addFeedField = document.getElementById('RSS feed');
   const addFeedbutton = document.getElementById('Add feed');
 
   const dispatcher = {
-    valid: () => {
-      addFeedField.removeAttribute('disabled');
-      addFeedField.classList.remove('border-danger');
-      addFeedbutton.removeAttribute('disabled');
+    valid: (isValid) => {
+      if (isValid) {
+        addFeedField.classList.remove('border-danger');
+      } else {
+        addFeedField.classList.add('border-danger');
+      }
     },
-    invalid: () => {
-      addFeedField.classList.add('border-danger');
-      addFeedbutton.setAttribute('disabled', true);
+    submitEnabled: (isEnabled) => {
+      if (isEnabled) {
+        addFeedbutton.removeAttribute('disabled');
+      } else {
+        addFeedbutton.setAttribute('disabled', 'disabled');
+      }
     },
-    blocked: () => {
-      addFeedField.setAttribute('disabled', true);
-      addFeedbutton.setAttribute('disabled', true);
+    formFieldDisabled: (isDisabled) => {
+      if (isDisabled) {
+        addFeedField.setAttribute('disabled', 'disabled');
+      } else {
+        addFeedField.removeAttribute('disabled');
+      }
     },
-    empty: () => {
-      addFeedField.removeAttribute('disabled');
-      addFeedField.value = '';
-      addFeedbutton.setAttribute('disabled', true);
+    formFieldText: (text) => {
+      addFeedField.value = text;
     },
   };
 
-  dispatcher[newState]();
+  dispatcher[prop](newState);
 };
