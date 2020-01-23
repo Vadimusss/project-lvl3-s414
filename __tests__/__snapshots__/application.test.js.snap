@@ -23,7 +23,7 @@ exports[`feed are added 1`] = `
                         <label for=\\"RSS feed\\">RSS feed</label>
                         <textarea name=\\"URL\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"true\\">Add</button>
+                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\">Add</button>
                 </form>
             </div>
         </div>
