@@ -1,20 +1,19 @@
-const makePostParsing = posts => posts.map((post) => {
-  const title = post.querySelector('title').textContent;
-  const description = post.querySelector('description').textContent;
-  const link = post.querySelector('link').textContent;
+const makeItemsParsing = items => items.map((item) => {
+  const title = item.querySelector('title').textContent;
+  const description = item.querySelector('description').textContent;
+  const link = item.querySelector('link').textContent;
 
   return { title, description, link };
 });
 
-export default (feedData) => {
-  const feed = new DOMParser().parseFromString(feedData, 'text/xml');
-  const channelTitle = feed.querySelector('channel title').textContent;
-  const channelDescription = feed.querySelector('channel description').textContent;
-  const channelPosts = makePostParsing([...feed.getElementsByTagName('item')]);
+export default (html) => {
+  const title = html.querySelector('channel title').textContent;
+  const description = html.querySelector('channel description').textContent;
+  const items = makeItemsParsing([...html.getElementsByTagName('item')]);
 
   return {
-    channelTitle,
-    channelDescription,
-    channelPosts,
+    title,
+    description,
+    items,
   };
 };
