@@ -1,127 +1,92 @@
 import '@babel/polyfill';
+import _ from 'lodash';
 import isURL from 'validator/lib/isURL';
 import axios from 'axios';
 import WatchJS from 'melanke-watchjs';
 import makeRender from './renderers';
-import parsingFeedData from './feedParser';
+import makeFeedParsing from './feedParser';
 
 export default () => {
   // State
   const state = {
-    fetchingState: 'waiting',
-    formState: {
-      valid: true,
-      formFieldDisabled: false,
-      submitEnabled: false,
-      formFieldText: '',
+    addingFeedProcess: {
+      state: 'filling', // sending
+      errors: [],
+      formFieldState: 'empty', // invalid, valid
     },
     updatetimerId: null,
     feeds: [],
-    posts: [],
+    items: [],
     errors: [],
     isValidURL(URL) {
       return isURL(URL) && this.feeds.every(feed => feed.URL !== URL);
     },
-    filterOutNewPosts(addedPosts) {
-      return addedPosts.filter(addedPost => this.posts
-        .every(displayedPost => displayedPost.title !== addedPost.title));
-    },
-    getFeedsURLs() {
-      return state.feeds.map(({ URL }) => URL);
-    },
   };
 
   // Observer
-  WatchJS.watch(state, 'formState', makeRender.form);
-  WatchJS.watch(state, 'feeds', makeRender.feedsList);
-  WatchJS.watch(state, 'posts', makeRender.postsList);
+  WatchJS.watch(state.addingFeedProcess, ['state', 'formFieldState'], makeRender.form);
   WatchJS.watch(state, 'errors', makeRender.errorMessage);
+  WatchJS.watch(state, 'feeds', makeRender.feedsList);
+  WatchJS.watch(state, 'items', makeRender.itemsList);
 
-  // Controller
   const corsProxyURL = 'https://api.codetabs.com/v1/proxy?quest=';
 
-  const getFeed = async (URL) => {
-    const response = await axios.get(URL);
-    const { channelTitle, channelDescription, channelPosts } = parsingFeedData(response.data);
-    return {
-      channelTitle,
-      channelDescription,
-      channelPosts,
-    };
-  };
-
   const updatePosts = async () => {
-    if (state.state === 'fetching') {
-      clearTimeout(state.updatetimerId);
-      state.updatetimerId = setTimeout(updatePosts, 5000);
-      return;
-    }
-    state.getFeedsURLs().forEach(async (URL) => {
+    const allFeedsItems = await state.feeds.reduce(async (acc, { URL }) => {
       try {
-        state.fetchingState = 'fetching';
-        const { channelPosts } = await getFeed(`${corsProxyURL}${URL}`);
-        const newPosts = state.filterOutNewPosts(channelPosts);
-        if (newPosts.length === 0) {
-          return;
-        }
-        newPosts.forEach(post => state.posts.push(post));
+        const currentAcc = await acc;
+        const response = await axios.get(`${corsProxyURL}${URL}`);
+        const html = new DOMParser().parseFromString(response.data, 'text/xml');
+        const { items } = makeFeedParsing(html);
+        return currentAcc.concat(items);
       } catch (error) {
-        state.updatingErrors.push(error.message);
-      } finally {
-        state.fetchingState = 'waiting';
+        state.errors.push(error.message);
+        return acc;
       }
-    });
+    }, Promise.resolve([]));
+    state.items = _.unionBy(state.items, allFeedsItems, 'title');
     clearTimeout(state.updatetimerId);
     state.updatetimerId = setTimeout(updatePosts, 5000);
   };
 
-  const addNewFeed = async (URL) => {
-    if (state.state === 'fetching') {
-      setTimeout(addNewFeed, 500, URL);
-      return;
-    }
-    state.fetchingState = 'fetching';
-    const feed = await getFeed(`${corsProxyURL}${URL}`);
-    const {
-      channelTitle,
-      channelDescription,
-      channelPosts,
-    } = feed;
-    state.feeds.push({ URL, channelTitle, channelDescription });
-    channelPosts.forEach(post => state.posts.push(post));
-
-    clearTimeout(state.updatetimerId);
-    state.updatetimerId = setTimeout(updatePosts, 5000);
-  };
-
+  // Controller
   const addFeedForm = document.querySelector('.jumbotron form');
   const addFeedField = document.getElementById('RSS feed');
 
   addFeedField.addEventListener('input', ({ target: { value } }) => {
-    const isValid = state.isValidURL(value);
-    state.formState.valid = isValid;
-    state.formState.submitEnabled = isValid;
-    state.formState.formFieldText = value;
+    state.addingFeedProcess.formFieldState = state.isValidURL(value) ? 'valid' : 'invalid';
   });
 
   addFeedField.addEventListener('focus', ({ target: { value } }) => {
-    const isValid = state.isValidURL(value);
-    state.formState.valid = isValid;
+    state.addingFeedProcess.formFieldState = state.isValidURL(value) ? 'valid' : 'invalid';
   });
 
   addFeedForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const URL = formData.get('URL');
     try {
-      state.formState.formFieldDisabled = true;
-      await addNewFeed(formData.get('URL'));
-      state.formState.formFieldText = '';
-      state.formState.formFieldDisabled = false;
+      state.addingFeedProcess.state = 'sending';
+      const response = await axios.get(`${corsProxyURL}${URL}`);
+      const html = new DOMParser().parseFromString(response.data, 'text/xml');
+      state.addingFeedProcess.formFieldState = 'empty';
+      state.addingFeedProcess.state = 'filling';
+
+      const {
+        title,
+        description,
+        items,
+      } = makeFeedParsing(html);
+
+      state.feeds.push({ URL, title, description });
+      state.items = _.unionBy(state.items, items, 'title');
+
+      clearTimeout(state.updatetimerId);
+      state.updatetimerId = setTimeout(updatePosts, 5000);
     } catch (error) {
       state.errors.push(error.message);
-      state.formState.formFieldDisabled = false;
-    } finally {
-      state.fetchingState = 'waiting';
+      state.addingFeedProcess.formFieldState = 'invalid';
+      state.addingFeedProcess.state = 'filling';
     }
   });
 };
