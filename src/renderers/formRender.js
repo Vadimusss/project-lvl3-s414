@@ -1,31 +1,44 @@
 export default (prop, _action, newState) => {
   const addFeedField = document.getElementById('RSS feed');
   const addFeedbutton = document.getElementById('Add feed');
-
   const dispatcher = {
-    valid: (isValid) => {
-      if (isValid) {
-        addFeedField.classList.remove('border-danger');
-      } else {
-        addFeedField.classList.add('border-danger');
+    formFieldState: (isValid) => {
+      switch (isValid) {
+        case 'valid': {
+          addFeedField.classList.remove('border-danger');
+          addFeedbutton.removeAttribute('disabled');
+          break;
+        }
+        case 'invalid': {
+          addFeedField.classList.add('border-danger');
+          addFeedbutton.setAttribute('disabled', 'disabled');
+          break;
+        }
+        case 'empty': {
+          addFeedField.value = '';
+          addFeedbutton.setAttribute('disabled', 'disabled');
+          break;
+        }
+        default: {
+          throw new Error('Unknown validation state!');
+        }
       }
     },
-    submitEnabled: (isEnabled) => {
-      if (isEnabled) {
-        addFeedbutton.removeAttribute('disabled');
-      } else {
-        addFeedbutton.setAttribute('disabled', 'disabled');
+    state: (state) => {
+      switch (state) {
+        case 'filling': {
+          addFeedField.removeAttribute('disabled');
+          break;
+        }
+        case 'sending': {
+          addFeedField.setAttribute('disabled', 'disabled');
+          addFeedbutton.setAttribute('disabled', 'disabled');
+          break;
+        }
+        default: {
+          throw new Error('Unknown state!');
+        }
       }
-    },
-    formFieldDisabled: (isDisabled) => {
-      if (isDisabled) {
-        addFeedField.setAttribute('disabled', 'disabled');
-      } else {
-        addFeedField.removeAttribute('disabled');
-      }
-    },
-    formFieldText: (text) => {
-      addFeedField.value = text;
     },
   };
 

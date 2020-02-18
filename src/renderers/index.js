@@ -1,12 +1,12 @@
 import formRender from './formRender';
 import feedsListRender from './feedsListRender';
-import postsListRender from './postsListRender';
+import itemsRender from './itemsRender';
 import errorMessageRender from './errorRender';
 
 const makeRender = {
   form: formRender,
   feedsList: feedsListRender,
-  postsList: postsListRender,
+  itemsList: itemsRender,
   errorMessage: errorMessageRender,
 };
 
