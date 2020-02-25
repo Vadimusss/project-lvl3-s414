@@ -2,8 +2,8 @@ export default (prop, _action, newState) => {
   const addFeedField = document.getElementById('RSS feed');
   const addFeedbutton = document.getElementById('Add feed');
   const dispatcher = {
-    formFieldState: (isValid) => {
-      switch (isValid) {
+    formFieldState: (state) => {
+      switch (state) {
         case 'valid': {
           addFeedField.classList.remove('border-danger');
           addFeedbutton.removeAttribute('disabled');
@@ -20,7 +20,7 @@ export default (prop, _action, newState) => {
           break;
         }
         default: {
-          throw new Error('Unknown validation state!');
+          throw new Error(`${state} is unknown validation state!`);
         }
       }
     },
@@ -36,7 +36,7 @@ export default (prop, _action, newState) => {
           break;
         }
         default: {
-          throw new Error('Unknown state!');
+          throw new Error(`${state} is unknown state!`);
         }
       }
     },
