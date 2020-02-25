@@ -7,9 +7,10 @@ const makeItemsParsing = items => items.map((item) => {
 });
 
 export default (html) => {
-  const title = html.querySelector('channel title').textContent;
-  const description = html.querySelector('channel description').textContent;
-  const items = makeItemsParsing([...html.getElementsByTagName('item')]);
+  const document = new DOMParser().parseFromString(html, 'text/xml');
+  const title = document.querySelector('channel title').textContent;
+  const description = document.querySelector('channel description').textContent;
+  const items = makeItemsParsing([...document.getElementsByTagName('item')]);
 
   return {
     title,
