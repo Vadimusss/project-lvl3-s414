@@ -10,8 +10,8 @@ const returnMockObject = path => new Promise((resolve, reject) => {
 });
 
 const axios = {
-  get(URL) {
-    const urlWithoutCorsProxy = URL.slice(40);
+  get(url) {
+    const urlWithoutCorsProxy = url.slice(40);
     switch (urlWithoutCorsProxy) {
       case 'validrss.ru':
         return returnMockObject('./__tests__/__fixtures__/testRSSfile.rss');
