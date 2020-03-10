@@ -3,10 +3,18 @@ import _ from 'lodash';
 import isUrl from 'validator/lib/isURL';
 import axios from 'axios';
 import WatchJS from 'melanke-watchjs';
+import i18next from 'i18next';
 import makeRender from './renderers';
 import makeFeedParsing from './feedParser';
+import resources from './locales';
 
-export default () => {
+export default async () => {
+  await i18next.init({
+    lng: 'ru',
+
+    resources,
+  });
+
   // State
   const state = {
     addingFeedProcess: {
@@ -34,8 +42,7 @@ export default () => {
       try {
         const currentAcc = await acc;
         const response = await axios.get(`${corsProxyUrl}${url}`);
-        const html = new DOMParser().parseFromString(response.data, 'text/xml');
-        const { items } = makeFeedParsing(html);
+        const { items } = makeFeedParsing(response.data);
         return currentAcc.concat(items);
       } catch (error) {
         return acc;
@@ -66,22 +73,21 @@ export default () => {
     try {
       state.addingFeedProcess.state = 'sending';
       const response = await axios.get(`${corsProxyUrl}${url}`);
-      state.addingFeedProcess.formFieldState = 'empty';
-      state.addingFeedProcess.state = 'filling';
-
       const {
         title,
         description,
         items,
       } = makeFeedParsing(response.data);
 
+      state.addingFeedProcess.formFieldState = 'empty';
+      state.addingFeedProcess.state = 'filling';
+
       state.feeds.push({ url, title, description });
       state.items = _.unionBy(state.items, items, 'title');
 
-      clearTimeout(state.updatetimerId);
       state.updatetimerId = setTimeout(updatePosts, 5000);
     } catch (error) {
-      state.addingFeedProcess.errors.push(error.message);
+      state.addingFeedProcess.errors.push(i18next.t(`errors.${error.message}`));
       state.addingFeedProcess.formFieldState = 'invalid';
       state.addingFeedProcess.state = 'filling';
     }
