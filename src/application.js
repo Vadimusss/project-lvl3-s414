@@ -3,18 +3,10 @@ import _ from 'lodash';
 import isUrl from 'validator/lib/isURL';
 import axios from 'axios';
 import WatchJS from 'melanke-watchjs';
-import i18next from 'i18next';
 import makeRender from './renderers';
-import makeFeedParsing from './feedParser';
-import resources from './locales';
+import parseRSS from './feedParser';
 
 export default async () => {
-  await i18next.init({
-    lng: 'ru',
-
-    resources,
-  });
-
   // State
   const state = {
     addingFeedProcess: {
@@ -38,24 +30,20 @@ export default async () => {
   const corsProxyUrl = 'https://api.codetabs.com/v1/proxy?quest=';
 
   const updatePosts = async () => {
-    const allFeedsItems = await state.feeds.reduce(async (acc, { url }) => {
-      try {
-        const currentAcc = await acc;
-        const response = await axios.get(`${corsProxyUrl}${url}`);
-        const { items } = makeFeedParsing(response.data);
-        return currentAcc.concat(items);
-      } catch (error) {
-        return acc;
-      }
-    }, Promise.resolve([]));
+    const responses = await Promise.all(state.feeds
+      .map(({ url }) => axios.get(`${corsProxyUrl}${url}`)));
+    const allFeedsItems = responses.map(({ data }) => {
+      const { items } = parseRSS(data);
+      return items;
+    }).flat(1);
+
     state.items = _.unionBy(state.items, allFeedsItems, 'title');
-    clearTimeout(state.updatetimerId);
     state.updatetimerId = setTimeout(updatePosts, 5000);
   };
-
+  updatePosts();
   // Controller
   const addFeedForm = document.querySelector('.jumbotron form');
-  const addFeedField = document.getElementById('RSS feed');
+  const addFeedField = document.getElementById('rssFeed');
 
   addFeedField.addEventListener('input', ({ target: { value } }) => {
     state.addingFeedProcess.formFieldState = isValidUrl(value) ? 'valid' : 'invalid';
@@ -77,17 +65,15 @@ export default async () => {
         title,
         description,
         items,
-      } = makeFeedParsing(response.data);
+      } = parseRSS(response.data);
 
       state.addingFeedProcess.formFieldState = 'empty';
       state.addingFeedProcess.state = 'filling';
 
       state.feeds.push({ url, title, description });
       state.items = _.unionBy(state.items, items, 'title');
-
-      state.updatetimerId = setTimeout(updatePosts, 5000);
     } catch (error) {
-      state.addingFeedProcess.errors.push(i18next.t(`errors.${error.message}`));
+      state.addingFeedProcess.errors.push(error.message);
       state.addingFeedProcess.formFieldState = 'invalid';
       state.addingFeedProcess.state = 'filling';
     }
