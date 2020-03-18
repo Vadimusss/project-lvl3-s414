@@ -1,10 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-import modal from 'bootstrap';
 import _ from 'lodash';
 
 export default (_prop, _action, newItems, oldItems) => {
   const items = _.differenceBy(newItems, oldItems, 'link');
-  const postsList = document.getElementById('Posts list');
+  const postsList = document.getElementById('postsList');
   const postListTitle = postsList.querySelector('p');
 
   items.forEach(({ title, description, link }) => {
