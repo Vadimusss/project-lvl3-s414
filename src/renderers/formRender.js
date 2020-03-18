@@ -1,6 +1,6 @@
 export default (prop, _action, newState) => {
-  const addFeedField = document.getElementById('RSS feed');
-  const addFeedbutton = document.getElementById('Add feed');
+  const addFeedField = document.getElementById('rssFeed');
+  const addFeedbutton = document.getElementById('addFeed');
   const dispatcher = {
     formFieldState: (state) => {
       switch (state) {
