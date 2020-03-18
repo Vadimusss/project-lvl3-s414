@@ -32,8 +32,8 @@ beforeEach(() => {
 test('feed are added', async () => {
   jest.setTimeout(20000);
 
-  const rssFeedField = document.querySelector('#RSS\\ feed');
-  const addFeedButton = document.querySelector('#Add\\ feed');
+  const rssFeedField = document.querySelector('#rssFeed');
+  const addFeedButton = document.querySelector('#addFeed');
 
   rssFeedField.focus();
   pressKey('validrss.ru', rssFeedField);

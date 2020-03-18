@@ -20,19 +20,19 @@ exports[`feed are added 1`] = `
             <div class=\\"jumbotron\\">
                 <form>
                     <div class=\\"form-group\\">
-                        <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea name=\\"url\\" class=\\"form-control\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
+                        <label for=\\"rssFeed\\">RSS feed</label>
+                        <textarea name=\\"url\\" class=\\"form-control\\" id=\\"rssFeed\\" rows=\\"1\\" value=\\"validrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
+                    <button type=\\"submit\\" id=\\"addFeed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
                 </form>
             </div>
         </div>
-        <div class=\\"col-4\\" id=\\"Feeds list\\">
+        <div class=\\"col-4\\" id=\\"feedsList\\">
             <p>Список RSS потоков:</p>
             <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
-        <div class=\\"col-12\\" id=\\"Posts list\\">
+        <div class=\\"col-12\\" id=\\"postsList\\">
             <p>Публикации:</p>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
                 <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
@@ -90,19 +90,19 @@ exports[`feed are added 2`] = `
             <div class=\\"jumbotron\\">
                 <form>
                     <div class=\\"form-group\\">
-                        <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"aaa.bbb\\"></textarea>
+                        <label for=\\"rssFeed\\">RSS feed</label>
+                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"rssFeed\\" rows=\\"1\\" value=\\"aaa.bbb\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
+                    <button type=\\"submit\\" id=\\"addFeed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
                 </form>
             </div>
         </div>
-        <div class=\\"col-4\\" id=\\"Feeds list\\">
+        <div class=\\"col-4\\" id=\\"feedsList\\">
             <p>Список RSS потоков:</p>
             <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
-        <div class=\\"col-12\\" id=\\"Posts list\\">
+        <div class=\\"col-12\\" id=\\"postsList\\">
             <p>Публикации:</p>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
                 <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
@@ -160,19 +160,19 @@ exports[`feed are added 3`] = `
             <div class=\\"jumbotron\\">
                 <form>
                     <div class=\\"form-group\\">
-                        <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
+                        <label for=\\"rssFeed\\">RSS feed</label>
+                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"rssFeed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
+                    <button type=\\"submit\\" id=\\"addFeed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
                 </form>
             </div>
         </div>
-        <div class=\\"col-4\\" id=\\"Feeds list\\">
+        <div class=\\"col-4\\" id=\\"feedsList\\">
             <p>Список RSS потоков:</p>
             <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
-        <div class=\\"col-12\\" id=\\"Posts list\\">
+        <div class=\\"col-12\\" id=\\"postsList\\">
             <p>Публикации:</p>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
                 <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
@@ -229,19 +229,19 @@ exports[`feed are added 4`] = `
             <div class=\\"jumbotron\\">
                 <form>
                     <div class=\\"form-group\\">
-                        <label for=\\"RSS feed\\">RSS feed</label>
-                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"RSS feed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
+                        <label for=\\"rssFeed\\">RSS feed</label>
+                        <textarea name=\\"url\\" class=\\"form-control border-danger\\" id=\\"rssFeed\\" rows=\\"1\\" value=\\"notrss.ru\\"></textarea>
                     </div>
-                    <button type=\\"submit\\" id=\\"Add feed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
+                    <button type=\\"submit\\" id=\\"addFeed\\" class=\\"btn btn-primary\\" disabled=\\"disabled\\">Add</button>
                 </form>
             </div>
         </div>
-        <div class=\\"col-4\\" id=\\"Feeds list\\">
+        <div class=\\"col-4\\" id=\\"feedsList\\">
             <p>Список RSS потоков:</p>
             <p>NASA Breaking News - A RSS news feed containing the latest NASA news articles and press releases.</p>
         </div>
         <div class=\\"w-100\\"></div>
-        <div class=\\"col-12\\" id=\\"Posts list\\">
+        <div class=\\"col-12\\" id=\\"postsList\\">
             <p>Публикации:</p>
             <div class=\\"mb-2 p-1\\"><a class=\\"m-2\\" href=\\"http://www.nasa.gov/press-release/nasa-to-broadcast-launch-of-mission-to-study-the-frontier-of-space\\">NASA to Broadcast Launch of Mission to Study the Frontier of Space</a>
                 <botton type=\\"botton\\" data-toggle=\\"modal\\" data-target=\\"#feedDescriptionModal\\" class=\\"btn btn-outline-info btn-sm\\">Description</botton>
